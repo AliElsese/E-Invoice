@@ -41,4 +41,23 @@ module.exports = {
             res.status(200).json({ data: user , token });
         }
     }),
+
+    checkToken : asyncHandler(async (req,res,next) => {
+        let token;
+        if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+            token = req.headers.authorization.split(" ")[1];
+        }
+        if (!token) {
+            return next(new ApiError('Please login to access this route'), 401);
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        
+        const currentUser = await UserModel.findById(decoded.userId);
+        if (!currentUser) {
+            return next(new ApiError('The user that belong to this token no longer exist', 401));
+        }
+
+        next();
+    }),
 }

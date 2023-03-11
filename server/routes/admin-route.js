@@ -1,5 +1,7 @@
 const express = require('express');
 
+const { checkToken } = require('../controllers/auth-controller')
+
 // User Validators
 const {
     createUserValidator,
@@ -17,9 +19,9 @@ const {
 
 const router = express.Router();
 
-router.get('/users' , getAllUsers);
-router.post('/createUser' , createUserValidator , createUser);
-router.put('/updateUser/:id' , updateUserValidator , updateUser);
-router.delete('/deleteUser/:id' , deleteUserValidator , deleteUser);
+router.get('/users' , checkToken , getAllUsers);
+router.post('/createUser' , checkToken , createUserValidator , createUser);
+router.put('/updateUser/:id' , checkToken , updateUserValidator , updateUser);
+router.delete('/deleteUser/:id' , checkToken , deleteUserValidator , deleteUser);
 
 module.exports = router;
