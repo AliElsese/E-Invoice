@@ -1,9 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cors = require('cors');
 
 dotenv.config({path: './config.env'});
 const dbConnection = require('./server/database/connection');
+
+// SetHeader For Cors Errors
+const headers = require('./server/middlewares/setHeaders');
+
 const authRoute = require('./server/routes/auth-route');
 const userRoute = require('./server/routes/user-route');
 
@@ -15,6 +20,8 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(headers.setHeaders);
+app.use(cors());
 
 if(process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
