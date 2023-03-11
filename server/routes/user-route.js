@@ -1,6 +1,13 @@
 const express = require('express');
 
-// User Service
+// User Validators
+const {
+    createUserValidator,
+    updateUserValidator,
+    deleteUserValidator
+} = require('../utils/validators/user-validator')
+
+// User Services
 const {
     createUser,
     updateUser,
@@ -9,8 +16,8 @@ const {
 
 const router = express.Router();
 
-router.post('/createUser' , createUser);
-router.put('/updateUser/:id' , updateUser);
-router.delete('/deleteUser/:id' , deleteUser);
+router.post('/createUser' , createUserValidator , createUser);
+router.put('/updateUser/:id' , updateUserValidator , updateUser);
+router.delete('/deleteUser/:id' , deleteUserValidator , deleteUser);
 
 module.exports = router;

@@ -1,6 +1,11 @@
 const express = require('express');
 
-// User Service
+// Auth Validators
+const {
+    userLoginValidator
+} = require('../utils/validators/auth-validator');
+
+// Auth Services
 const {
     getAllUsers,
     getUserCompanies,
@@ -11,6 +16,6 @@ const router = express.Router();
 
 router.get('/getAllUsers' , getAllUsers);
 router.get('/getUserCompanies/:id' , getUserCompanies);
-router.post('/login' , userLogin);
+router.post('/login' , userLoginValidator , userLogin);
 
 module.exports = router;
