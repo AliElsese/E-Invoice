@@ -20,6 +20,12 @@ exports.createUserValidator = [
     validatorMiddleware
 ]
 
+exports.getUserValidator = [
+    check('id').isMongoId().withMessage('Invalid User Id Format'),
+    
+    validatorMiddleware
+]
+
 exports.updateUserValidator = [
     check('id').isMongoId().withMessage('Invalid User Id Format'),
     

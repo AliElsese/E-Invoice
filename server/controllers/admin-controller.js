@@ -22,6 +22,12 @@ module.exports = {
         res.status(201).json({ data: user });
     }),
 
+    getUser : asyncHandler(async (req , res) => {
+        const { id } = req.params;
+        const user = await UserModel.findOne({ _id: id });
+        res.status(200).json({ data: user });
+    }),
+
     updateUser : asyncHandler(async (req , res , next) => {
         const id = req.params.id;
         const username = req.body.username;

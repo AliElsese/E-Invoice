@@ -10,7 +10,7 @@ const {
     getActiveUsers,
     getUserCompanies,
     userLogin
-} = require('../controllers/auth-controller')
+} = require('../controllers/auth-controller');
 
 const router = express.Router();
 
