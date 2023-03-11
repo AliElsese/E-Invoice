@@ -7,14 +7,14 @@ const {
 
 // Auth Services
 const {
-    getAllUsers,
+    getActiveUsers,
     getUserCompanies,
     userLogin
 } = require('../controllers/auth-controller')
 
 const router = express.Router();
 
-router.get('/getAllUsers' , getAllUsers);
+router.get('/getActiveUsers' , getActiveUsers);
 router.get('/getUserCompanies/:id' , getUserCompanies);
 router.post('/login' , userLoginValidator , userLogin);
 

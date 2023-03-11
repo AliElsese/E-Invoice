@@ -11,8 +11,8 @@ const generateToken = (payload) => {
 }
 
 module.exports = {
-    getAllUsers : asyncHandler(async(req , res) => {
-        const users = await UserModel.find({});
+    getActiveUsers : asyncHandler(async(req , res) => {
+        const users = await UserModel.find({ isActive: true });
         res.status(200).json({
             results: users.length,
             data: users

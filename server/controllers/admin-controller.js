@@ -3,6 +3,14 @@ const ApiError = require('../utils/apiError');
 const UserModel = require('../models/user-model');
 
 module.exports = {
+    getAllUsers : asyncHandler(async (req , res) => {
+        const users = await UserModel.find({});
+        res.status(200).json({
+            results: users.length,
+            data: users
+        });
+    }),
+
     createUser : asyncHandler(async (req , res) => {
         const username = req.body.username;
         const password = req.body.password;

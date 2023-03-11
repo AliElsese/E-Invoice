@@ -11,7 +11,7 @@ const errorMiddleware = require('./server/middlewares/error-middleware');
 const headersMiddleware = require('./server/middlewares/headers-middleware');
 
 const authRoute = require('./server/routes/auth-route');
-const userRoute = require('./server/routes/user-route');
+const adminRoute = require('./server/routes/admin-route');
 
 // DB Connection
 dbConnection();
@@ -31,7 +31,7 @@ if(process.env.NODE_ENV === 'development') {
 
 // Routes
 app.use('/auth' , authRoute);
-app.use('/users' , userRoute);
+app.use('/admin' , adminRoute);
 
 app.all('*' , (req , res , next) => {
     next(new ApiError(`Can't Find This Route: ${req.originalUrl}` , 400));
