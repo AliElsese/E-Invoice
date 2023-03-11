@@ -37,6 +37,7 @@ app.all('*' , (req , res , next) => {
     next(new ApiError(`Can't Find This Route: ${req.originalUrl}` , 400));
 })
 
+// global error
 app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 8100;
